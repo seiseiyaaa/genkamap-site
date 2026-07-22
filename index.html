@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (location.hostname.endsWith(".chatgpt.site") || location.hostname === "www.genkamap.com") {
+      location.replace(`https://genkamap.com${location.pathname}${location.search}${location.hash}`);
+    }
+  </script>
+  <meta name="description" content="プロジェクト型ビジネスのブラウザ作業とGoogleカレンダーを、入力なしで顧客・案件別の工数へ。案件別原価と隠れ工数を可視化します。">
+  <link rel="canonical" href="https://genkamap.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="GENKA MAP">
+  <meta property="og:title" content="GENKA MAP｜案件別工数・原価管理クラウド">
+  <meta property="og:description" content="誰も入力せず、案件別の原価が見える。ChromeとGoogleカレンダーから工数を自動集計。">
+  <meta property="og:url" content="https://genkamap.com/">
+  <meta property="og:image" content="https://genkamap.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GENKA MAP｜案件別工数・原価管理クラウド">
+  <meta name="twitter:description" content="誰も入力せず、案件別の原価が見える。">
+  <meta name="twitter:image" content="https://genkamap.com/og.png">
+  <title>GENKA MAP｜案件別工数・原価管理クラウド</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="GENKA MAP トップへ">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span>GENKA MAP</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#how">仕組み</a>
+      <a href="#security">取得データ</a>
+      <a class="nav-cta" href="#contact">PoCに相談する</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>プロジェクト型ビジネスのための案件別原価データ</p>
+        <h1>人件費という最大の原価を、<br><em>誰も入力せず</em>案件別へ。</h1>
+        <p class="hero-lead">GENKA MAPは、Chromeのブラウザ作業時間とGoogleカレンダー予定を取得し、誰が・どの顧客や案件に・どれだけ時間を使ったかを自動集計する工数・原価管理アプリです。記憶や自己申告では見えなかった赤字案件を、意思決定できる数字に変えます。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contact">3ヶ月PoCを相談する <span aria-hidden="true">→</span></a>
+          <a class="button button-ghost" href="#demo">画面イメージを見る</a>
+        </div>
+        <p class="microcopy">対象10〜30名から開始 ／ Chrome拡張＋Googleカレンダー ／ PoC価格は個別相談</p>
+      </div>
+
+      <div class="hero-visual" id="demo" aria-label="工数ダッシュボードの画面イメージ">
+        <div class="visual-topbar">
+          <div class="traffic-lights"><i></i><i></i><i></i></div>
+          <span>今月の案件別工数</span>
+          <span class="live-pill"><i></i> 集計中</span>
+        </div>
+        <div class="metric-row">
+          <div><span>計測工数</span><strong>1,248<small>h</small></strong><b>前月比 +8.4%</b></div>
+          <div><span>帰属率</span><strong>87.6<small>%</small></strong><b class="neutral">目標 80%以上</b></div>
+          <div><span>要確認案件</span><strong>3<small>件</small></strong><b class="alert">原価超過の可能性</b></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-heading"><span>顧客・案件別工数</span><small>Chrome実測 ＋ カレンダー補完</small></div>
+          <div class="bar-list">
+            <div class="bar-item"><span>A社｜運用支援</span><div><i style="--w: 88%"></i></div><b>264h</b></div>
+            <div class="bar-item"><span>B社｜サイト改善</span><div><i style="--w: 66%"></i></div><b>198h</b></div>
+            <div class="bar-item risk"><span>C社｜月次支援</span><div><i style="--w: 58%"></i></div><b>174h</b></div>
+            <div class="bar-item"><span>D社｜新規提案</span><div><i style="--w: 42%"></i></div><b>126h</b></div>
+          </div>
+          <div class="insight"><span>!</span><p><strong>C社は契約フィーに対して工数原価が超過傾向です。</strong><br>担当者別の内訳を確認し、条件変更を検討できます。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem-band">
+      <div class="section-shell problem-grid">
+        <div>
+          <p class="eyebrow light"><span></span>なぜ、今の工数管理では足りないのか</p>
+          <h2>「気づけば赤字だった」を、<br>案件が終わる前に。</h2>
+        </div>
+        <div class="problem-list">
+          <article><span>01</span><div><h3>手入力は、続かない</h3><p>忙しい現場ほど後回しになり、月末に記憶で埋めた数字が原価になります。</p></div></article>
+          <article><span>02</span><div><h3>会議以外の作業が、見えない</h3><p>レポート作成、広告設定、資料修正。顧客のために手を動かした時間ほどブラックボックスです。</p></div></article>
+          <article><span>03</span><div><h3>値付けの根拠が、残らない</h3><p>案件別の実測値がなければ、値上げ・条件変更・撤退を勘で決めることになります。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how section-shell" id="how">
+      <div class="section-heading">
+        <p class="eyebrow"><span></span>How it works</p>
+        <h2>現場の仕事は変えず、<br>原価データだけを整える。</h2>
+        <p>最初から大きな基幹システムを入れ替えません。普段のブラウザ作業とカレンダーを、案件別の管理会計データへ変換します。</p>
+      </div>
+      <div class="steps">
+        <article><div class="step-icon">01</div><h3>自動で計測</h3><p>Chromeの前面タブで使った時間と、各ユーザーが許可したGoogleカレンダー予定を取得します。</p><small>Chrome拡張 / Calendar OAuth</small></article>
+        <article><div class="step-icon">02</div><h3>顧客・案件へ帰属</h3><p>Google AdsやMetaのアカウントID、ファイル名、予定タイトル、参加者ドメインから自動で紐づけます。</p><small>帰属方法と確信度も保持</small></article>
+        <article><div class="step-icon">03</div><h3>経営判断に使う</h3><p>顧客・案件・担当者別の工数をダッシュボードで確認。ローデータはCSVで出力できます。</p><small>既存の表計算・会議資料にも接続</small></article>
+      </div>
+    </section>
+
+    <section class="decision section-shell">
+      <div class="decision-card">
+        <p class="eyebrow light"><span></span>数字が見えた、その先へ</p>
+        <h2>工数の可視化ではなく、<br>利益を守る意思決定のために。</h2>
+        <div class="decision-points">
+          <div><b>値上げ</b><p>契約フィーと実測原価を比べ、交渉の根拠を作る。</p></div>
+          <div><b>条件変更</b><p>作業範囲や体制の過不足を、案件別の数字で見直す。</p></div>
+          <div><b>撤退・集中</b><p>利益を生まない案件と、伸ばすべき顧客を見分ける。</p></div>
+          <div><b>見積もり</b><p>過去案件の実測工数を、新しい提案の見積もりへ使う。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="security section-shell" id="security">
+      <div class="section-heading compact">
+        <p class="eyebrow"><span></span>Privacy by design</p>
+        <h2>社員監視のための<br>ツールにはしません。</h2>
+      </div>
+      <div class="security-content">
+        <p>目的は「誰がサボっているか」ではなく、「どの案件に原価がかかったか」を把握すること。必要な情報だけに絞って設計しています。</p>
+        <ul>
+          <li><span>✓</span>キー入力やマウス操作の内容は取得しません</li>
+          <li><span>✓</span>ドキュメント本文・セルの値は取得しません</li>
+          <li><span>✓</span>対象外サイトの閲覧履歴は取得しません</li>
+          <li><span>✓</span>Googleカレンダーの本文・場所・参加者メールは送信しません</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="poc section-shell">
+      <div class="section-heading">
+        <p class="eyebrow"><span></span>3-month proof of value</p>
+        <h2>まずは小さく、<br>「意思決定に使えるか」を検証。</h2>
+      </div>
+      <div class="poc-grid">
+        <div class="poc-summary">
+          <div><span>対象</span><strong>10〜30名</strong></div>
+          <div><span>期間</span><strong>3ヶ月</strong></div>
+          <div><span>価格</span><strong>個別相談</strong></div>
+        </div>
+        <ol>
+          <li><span>1</span><div><b>帰属率 80%以上</b><p>計測した工数のうち、顧客・案件へ紐づく割合を確認。</p></div></li>
+          <li><span>2</span><div><b>月次会議で利用</b><p>レポートが経営・案件会議の議題になるかを確認。</p></div></li>
+          <li><span>3</span><div><b>意思決定を1件以上</b><p>値付け、条件変更、撤退などの判断につながるかを確認。</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="section-shell contact-grid">
+        <div>
+          <p class="eyebrow light"><span></span>Early partner program</p>
+          <h2>自社の案件原価を、<br>一度きちんと見てみませんか。</h2>
+          <p>まだβ版です。だからこそ、実際の運用に合わせて帰属ルールやレポートを一緒に設計します。導入可否が未定でも構いません。</p>
+          <div class="contact-note"><span>30</span><p><b>30分のオンライン相談</b><br>現在の工数管理と、見たい案件収支を伺います。</p></div>
+        </div>
+        <form id="lead-form" novalidate>
+          <div class="form-row">
+            <label>会社名 <span>必須</span><input name="company" autocomplete="organization" required maxlength="100"></label>
+            <label>お名前 <span>必須</span><input name="name" autocomplete="name" required maxlength="80"></label>
+          </div>
+          <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120"></label>
+          <label>工数を可視化したい人数
+            <select name="teamSize">
+              <option value="">選択してください</option>
+              <option>10名未満</option><option>10〜30名</option><option>31〜100名</option><option>101〜300名</option><option>301名以上</option>
+            </select>
+          </label>
+          <label>現在の課題 <span>必須</span><textarea name="challenge" required maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
+          <label class="honeypot" aria-hidden="true">Webサイト<input name="website" tabindex="-1" autocomplete="off"></label>
+          <label class="consent"><input type="checkbox" name="consent" required><span>入力内容をPoC相談への連絡に利用することに同意します。</span></label>
+          <button class="button button-light" type="submit">相談内容を送信する <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">G</span><span>GENKA MAP <small>β</small></span></a>
+    <p><a href="./privacy.html">プライバシーポリシー</a>　© 2026 GENKA MAP</p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>
