@@ -165,43 +165,30 @@
             <label>会社名 <span>必須</span><input name="company" autocomplete="organization" required maxlength="100"></label>
             <label>お名前 <span>必須</span><input name="name" autocomplete="name" required maxlength="80"></label>
           </div>
-          <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120"></label>
+          <div class="form-row">
+            <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120"></label>
+            <label>電話番号 <span>必須</span><input type="tel" name="phone" autocomplete="tel" required maxlength="16" placeholder="090-1234-5678"></label>
+          </div>
           <label>工数を可視化したい人数
             <select name="teamSize">
               <option value="">選択してください</option>
               <option>10名未満</option><option>10〜30名</option><option>31〜100名</option><option>101〜300名</option><option>301名以上</option>
             </select>
           </label>
-          <label>現在の課題 <span>必須</span><textarea name="challenge" required maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
+          <label>現在の課題(任意)<textarea name="challenge" maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
+          <label>オンライン相談の第1希望 <span>必須</span>
+            <select name="preferredSlot1" required><option value="">読み込み中…</option></select>
+          </label>
           <div class="form-row">
-            <label>オンライン相談の第1希望日 <span>必須</span><input type="date" name="preferredDate1" required></label>
-            <label>時間帯
-              <select name="preferredTime1">
-                <option value="">指定なし</option>
-                <option>午前(9-12時)</option><option>午後(13-16時)</option><option>夕方(16-18時)</option>
-              </select>
+            <label>第2希望(任意)
+              <select name="preferredSlot2"><option value="">指定なし</option></select>
             </label>
-          </div>
-          <div class="form-row">
-            <label>第2希望日(任意)<input type="date" name="preferredDate2"></label>
-            <label>時間帯
-              <select name="preferredTime2">
-                <option value="">指定なし</option>
-                <option>午前(9-12時)</option><option>午後(13-16時)</option><option>夕方(16-18時)</option>
-              </select>
-            </label>
-          </div>
-          <div class="form-row">
-            <label>第3希望日(任意)<input type="date" name="preferredDate3"></label>
-            <label>時間帯
-              <select name="preferredTime3">
-                <option value="">指定なし</option>
-                <option>午前(9-12時)</option><option>午後(13-16時)</option><option>夕方(16-18時)</option>
-              </select>
+            <label>第3希望(任意)
+              <select name="preferredSlot3"><option value="">指定なし</option></select>
             </label>
           </div>
           <label class="honeypot" aria-hidden="true">Webサイト<input name="website" tabindex="-1" autocomplete="off"></label>
-          <label class="consent"><input type="checkbox" name="consent" required><span>入力内容をPoC相談への連絡に利用することに同意します。</span></label>
+          <p class="form-note">送信いただいた内容は、PoC相談のご連絡にのみ利用します(<a href="./privacy.html">プライバシーポリシー</a>)。</p>
           <button class="button button-light" type="submit">相談内容を送信する <span aria-hidden="true">→</span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>

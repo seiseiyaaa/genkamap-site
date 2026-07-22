@@ -140,6 +140,8 @@ textarea { min-height: 100px; resize: vertical; }
 .consent { display: flex; gap: 9px; align-items: flex-start; font-weight: 400; }
 .consent input { width: 16px; margin: 3px 0 0; }
 .consent span { margin: 0; color: #526761; font-size: 11px; }
+.form-note { margin: 4px 0 0; color: #526761; font-size: 11px; }
+.form-note a { color: inherit; }
 .honeypot { position: absolute !important; left: -9999px !important; }
 .button-light { width: 100%; background: var(--forest); color: #fff; }
 .button-light:disabled { cursor: wait; opacity: .62; }

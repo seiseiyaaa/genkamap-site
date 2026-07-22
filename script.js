@@ -8,21 +8,88 @@ function setStatus(message, isError = false) {
   status.classList.toggle("error", isError);
 }
 
+// オンライン相談の枠。GAS側(LeadForm.gs)の CONSULT_SLOTS と対応させる。
+const SLOT_LABELS = {
+  am: "午前(10:00-11:00)",
+  pm: "午後(14:00-15:00)",
+  eve: "夕方(16:00-17:00)"
+};
+const WEEKDAY_JP = ["日", "月", "火", "水", "木", "金", "土"];
+
+// カレンダーの空き情報が取れない場合でも、翌日以降の平日枠を出して送信は止めない。
+function fallbackSlots() {
+  const slots = [];
+  const base = new Date();
+  for (let offset = 1; slots.length < 10 && offset <= 21; offset += 1) {
+    const day = new Date(base.getFullYear(), base.getMonth(), base.getDate() + offset);
+    if (day.getDay() === 0 || day.getDay() === 6) continue;
+    const pad = (num) => String(num).padStart(2, "0");
+    slots.push({
+      date: `${day.getFullYear()}-${pad(day.getMonth() + 1)}-${pad(day.getDate())}`,
+      label: `${day.getMonth() + 1}/${day.getDate()}(${WEEKDAY_JP[day.getDay()]})`,
+      times: Object.keys(SLOT_LABELS).map((key) => ({ key, available: true }))
+    });
+  }
+  return slots;
+}
+
+function populateSlotSelect(select, options, emptyLabel) {
+  const empty = document.createElement("option");
+  empty.value = "";
+  empty.textContent = emptyLabel;
+  select.replaceChildren(empty, ...options.map((item) => {
+    const option = document.createElement("option");
+    option.value = item.value;
+    option.textContent = item.label;
+    return option;
+  }));
+}
+
+async function loadSlots() {
+  let slots = null;
+  try {
+    if (!FORM_ENDPOINT.startsWith("PASTE_")) {
+      const response = await fetch(`${FORM_ENDPOINT}?action=availability`);
+      const body = await response.json();
+      if (body.ok && Array.isArray(body.slots)) slots = body.slots;
+    }
+  } catch (error) {
+    console.warn("availability", error);
+  }
+  if (!slots) slots = fallbackSlots();
+
+  const options = [];
+  slots.forEach((day) => {
+    (day.times || []).forEach((time) => {
+      if (!time.available || !SLOT_LABELS[time.key]) return;
+      options.push({ value: `${day.date}|${time.key}`, label: `${day.label} ${SLOT_LABELS[time.key]}` });
+    });
+  });
+  populateSlotSelect(form.elements.preferredSlot1, options, "選択してください");
+  populateSlotSelect(form.elements.preferredSlot2, options, "指定なし");
+  populateSlotSelect(form.elements.preferredSlot3, options, "指定なし");
+}
+
+function slotParts(value) {
+  const [date, key] = String(value || "").split("|");
+  return { date: date || "", time: SLOT_LABELS[key] || "" };
+}
+
 function formPayload(formData) {
   const params = new URLSearchParams(window.location.search);
   return {
     company: String(formData.get("company") || "").trim(),
     name: String(formData.get("name") || "").trim(),
     email: String(formData.get("email") || "").trim(),
+    phone: String(formData.get("phone") || "").trim(),
     teamSize: String(formData.get("teamSize") || "").trim(),
     challenge: String(formData.get("challenge") || "").trim(),
-    preferredDate1: String(formData.get("preferredDate1") || "").trim(),
-    preferredTime1: String(formData.get("preferredTime1") || "").trim(),
-    preferredDate2: String(formData.get("preferredDate2") || "").trim(),
-    preferredTime2: String(formData.get("preferredTime2") || "").trim(),
-    preferredDate3: String(formData.get("preferredDate3") || "").trim(),
-    preferredTime3: String(formData.get("preferredTime3") || "").trim(),
-    consent: formData.get("consent") === "on",
+    preferredDate1: slotParts(formData.get("preferredSlot1")).date,
+    preferredTime1: slotParts(formData.get("preferredSlot1")).time,
+    preferredDate2: slotParts(formData.get("preferredSlot2")).date,
+    preferredTime2: slotParts(formData.get("preferredSlot2")).time,
+    preferredDate3: slotParts(formData.get("preferredSlot3")).date,
+    preferredTime3: slotParts(formData.get("preferredSlot3")).time,
     website: String(formData.get("website") || ""),
     source: "landing-page",
     pageUrl: window.location.href,
@@ -70,3 +137,5 @@ form.addEventListener("submit", async (event) => {
     button.firstChild.textContent = "相談内容を送信する ";
   }
 });
+
+loadSlots();
