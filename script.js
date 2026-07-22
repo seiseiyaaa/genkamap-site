@@ -20,9 +20,8 @@ const WEEKDAY_JP = ["日", "月", "火", "水", "木", "金", "土"];
 function fallbackSlots() {
   const slots = [];
   const base = new Date();
-  for (let offset = 1; slots.length < 10 && offset <= 21; offset += 1) {
+  for (let offset = 1; slots.length < 10 && offset <= 14; offset += 1) {
     const day = new Date(base.getFullYear(), base.getMonth(), base.getDate() + offset);
-    if (day.getDay() === 0 || day.getDay() === 6) continue;
     const pad = (num) => String(num).padStart(2, "0");
     slots.push({
       date: `${day.getFullYear()}-${pad(day.getMonth() + 1)}-${pad(day.getDate())}`,
@@ -65,12 +64,15 @@ async function loadSlots() {
       options.push({ value: `${day.date}|${time.key}`, label: `${day.label} ${SLOT_LABELS[time.key]}` });
     });
   });
-  populateSlotSelect(form.elements.preferredSlot1, options, "選択してください");
+  // 候補が全て埋まっていても送信できるよう、相談用の選択肢を必ず末尾に残す。
+  const consultOption = { value: "consult", label: "この中に合う日程がない(日程は相談して決める)" };
+  populateSlotSelect(form.elements.preferredSlot1, options.concat(consultOption), "選択してください");
   populateSlotSelect(form.elements.preferredSlot2, options, "指定なし");
   populateSlotSelect(form.elements.preferredSlot3, options, "指定なし");
 }
 
 function slotParts(value) {
+  if (value === "consult") return { date: "", time: "日程相談希望" };
   const [date, key] = String(value || "").split("|");
   return { date: date || "", time: SLOT_LABELS[key] || "" };
 }
