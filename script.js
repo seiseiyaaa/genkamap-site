@@ -8,31 +8,38 @@ function setStatus(message, isError = false) {
   status.classList.toggle("error", isError);
 }
 
-// オンライン相談の枠。GAS側(LeadForm.gs)の CONSULT_SLOTS と対応させる。
-const SLOT_LABELS = {
-  am: "午前(10:00-11:00)",
-  pm: "午後(14:00-15:00)",
-  eve: "夕方(16:00-17:00)"
-};
+// オンライン相談の枠。9:00〜18:00 の 1 時間刻み(GAS側 LeadForm.gs と対応)。
+const CONSULT_START_HOUR = 9;
+const CONSULT_END_HOUR = 18;
 const WEEKDAY_JP = ["日", "月", "火", "水", "木", "金", "土"];
+let availabilityDays = [];
 
-// カレンダーの空き情報が取れない場合でも、翌日以降の平日枠を出して送信は止めない。
-function fallbackSlots() {
-  const slots = [];
-  const base = new Date();
-  for (let offset = 1; slots.length < 10 && offset <= 14; offset += 1) {
-    const day = new Date(base.getFullYear(), base.getMonth(), base.getDate() + offset);
-    const pad = (num) => String(num).padStart(2, "0");
-    slots.push({
-      date: `${day.getFullYear()}-${pad(day.getMonth() + 1)}-${pad(day.getDate())}`,
-      label: `${day.getMonth() + 1}/${day.getDate()}(${WEEKDAY_JP[day.getDay()]})`,
-      times: Object.keys(SLOT_LABELS).map((key) => ({ key, available: true }))
-    });
-  }
-  return slots;
+const timeValue = (hour) => `${String(hour).padStart(2, "0")}:00-${String(hour + 1).padStart(2, "0")}:00`;
+const timeLabel = (hour) => `${hour}:00〜${hour + 1}:00`;
+
+function allHours() {
+  const hours = [];
+  for (let hour = CONSULT_START_HOUR; hour < CONSULT_END_HOUR; hour += 1) hours.push(hour);
+  return hours;
 }
 
-function populateSlotSelect(select, options, emptyLabel) {
+// 空き情報が取れない場合でも、翌日以降の全時間帯を出して送信は止めない。
+function fallbackDays() {
+  const days = [];
+  const base = new Date();
+  for (let offset = 1; offset <= 10; offset += 1) {
+    const day = new Date(base.getFullYear(), base.getMonth(), base.getDate() + offset);
+    const pad = (num) => String(num).padStart(2, "0");
+    days.push({
+      date: `${day.getFullYear()}-${pad(day.getMonth() + 1)}-${pad(day.getDate())}`,
+      label: `${day.getMonth() + 1}/${day.getDate()}(${WEEKDAY_JP[day.getDay()]})`,
+      hours: allHours()
+    });
+  }
+  return days;
+}
+
+function populateSelect(select, options, emptyLabel) {
   const empty = document.createElement("option");
   empty.value = "";
   empty.textContent = emptyLabel;
@@ -44,37 +51,65 @@ function populateSlotSelect(select, options, emptyLabel) {
   }));
 }
 
+// 日付を選ぶと、その日の空いている時間だけを時間プルダウンに出す。
+function updateTimeSelect(n) {
+  const dateSelect = form.elements[`preferredDate${n}`];
+  const timeSelect = form.elements[`preferredTime${n}`];
+  const day = availabilityDays.find((item) => item.date === dateSelect.value);
+
+  if (!day) {
+    const label = dateSelect.value === "consult" ? "日程は相談して決める" : "先に日付を選択";
+    populateSelect(timeSelect, [], label);
+    timeSelect.disabled = true;
+    return;
+  }
+  populateSelect(
+    timeSelect,
+    day.hours.map((hour) => ({ value: timeValue(hour), label: timeLabel(hour) })),
+    "時間を選択"
+  );
+  timeSelect.disabled = false;
+}
+
+function setupSlotPickers(days) {
+  availabilityDays = days;
+  const dateOptions = days
+    .filter((day) => day.hours.length > 0)
+    .map((day) => ({ value: day.date, label: day.label }));
+
+  [1, 2, 3].forEach((n) => {
+    const dateSelect = form.elements[`preferredDate${n}`];
+    const options = n === 1
+      // 候補が全て埋まっていても送信できるよう、相談用の選択肢を必ず末尾に残す。
+      ? dateOptions.concat({ value: "consult", label: "合う日程がない(日程は相談して決める)" })
+      : dateOptions;
+    populateSelect(dateSelect, options, n === 1 ? "選択してください" : "指定なし");
+    dateSelect.addEventListener("change", () => updateTimeSelect(n));
+    updateTimeSelect(n);
+  });
+}
+
 async function loadSlots() {
-  let slots = null;
+  let days = null;
   try {
     if (!FORM_ENDPOINT.startsWith("PASTE_")) {
       const response = await fetch(`${FORM_ENDPOINT}?action=availability`);
       const body = await response.json();
-      if (body.ok && Array.isArray(body.slots)) slots = body.slots;
+      if (body.ok && Array.isArray(body.days)) days = body.days;
     }
   } catch (error) {
     console.warn("availability", error);
   }
-  if (!slots) slots = fallbackSlots();
-
-  const options = [];
-  slots.forEach((day) => {
-    (day.times || []).forEach((time) => {
-      if (!time.available || !SLOT_LABELS[time.key]) return;
-      options.push({ value: `${day.date}|${time.key}`, label: `${day.label} ${SLOT_LABELS[time.key]}` });
-    });
-  });
-  // 候補が全て埋まっていても送信できるよう、相談用の選択肢を必ず末尾に残す。
-  const consultOption = { value: "consult", label: "この中に合う日程がない(日程は相談して決める)" };
-  populateSlotSelect(form.elements.preferredSlot1, options.concat(consultOption), "選択してください");
-  populateSlotSelect(form.elements.preferredSlot2, options, "指定なし");
-  populateSlotSelect(form.elements.preferredSlot3, options, "指定なし");
+  setupSlotPickers(days || fallbackDays());
 }
 
-function slotParts(value) {
-  if (value === "consult") return { date: "", time: "日程相談希望" };
-  const [date, key] = String(value || "").split("|");
-  return { date: date || "", time: SLOT_LABELS[key] || "" };
+// 無効化中の時間セレクトは FormData に含まれないため、常に日付とセットで解釈する。
+function preferredParts(formData, n) {
+  const date = String(formData.get(`preferredDate${n}`) || "");
+  const time = String(formData.get(`preferredTime${n}`) || "");
+  if (date === "consult") return { date: "", time: "日程相談希望" };
+  if (!date || !time) return { date: "", time: "" };
+  return { date, time };
 }
 
 function formPayload(formData) {
@@ -86,12 +121,12 @@ function formPayload(formData) {
     phone: String(formData.get("phone") || "").trim(),
     teamSize: String(formData.get("teamSize") || "").trim(),
     challenge: String(formData.get("challenge") || "").trim(),
-    preferredDate1: slotParts(formData.get("preferredSlot1")).date,
-    preferredTime1: slotParts(formData.get("preferredSlot1")).time,
-    preferredDate2: slotParts(formData.get("preferredSlot2")).date,
-    preferredTime2: slotParts(formData.get("preferredSlot2")).time,
-    preferredDate3: slotParts(formData.get("preferredSlot3")).date,
-    preferredTime3: slotParts(formData.get("preferredSlot3")).time,
+    preferredDate1: preferredParts(formData, 1).date,
+    preferredTime1: preferredParts(formData, 1).time,
+    preferredDate2: preferredParts(formData, 2).date,
+    preferredTime2: preferredParts(formData, 2).time,
+    preferredDate3: preferredParts(formData, 3).date,
+    preferredTime3: preferredParts(formData, 3).time,
     website: String(formData.get("website") || ""),
     source: "landing-page",
     pageUrl: window.location.href,
@@ -126,6 +161,7 @@ form.addEventListener("submit", async (event) => {
     }
 
     form.reset();
+    [1, 2, 3].forEach((n) => updateTimeSelect(n));
     // 送信先が未設定(プレースホルダー)のときは、実ユーザーには
     // 開発用であることを悟らせず、送信は受け付けない旨だけを穏当に伝える。
     setStatus(isDemo

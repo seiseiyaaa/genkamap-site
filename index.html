@@ -176,15 +176,28 @@
             </select>
           </label>
           <label>現在の課題(任意)<textarea name="challenge" maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
-          <label>オンライン相談の第1希望 <span>必須</span>
-            <select name="preferredSlot1" required><option value="">読み込み中…</option></select>
-          </label>
           <div class="form-row">
-            <label>第2希望(任意)
-              <select name="preferredSlot2"><option value="">指定なし</option></select>
+            <label>オンライン相談の第1希望日 <span>必須</span>
+              <select name="preferredDate1" required><option value="">読み込み中…</option></select>
             </label>
-            <label>第3希望(任意)
-              <select name="preferredSlot3"><option value="">指定なし</option></select>
+            <label>時間 <span>必須</span>
+              <select name="preferredTime1" required disabled><option value="">先に日付を選択</option></select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>第2希望日(任意)
+              <select name="preferredDate2"><option value="">指定なし</option></select>
+            </label>
+            <label>時間
+              <select name="preferredTime2" disabled><option value="">先に日付を選択</option></select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>第3希望日(任意)
+              <select name="preferredDate3"><option value="">指定なし</option></select>
+            </label>
+            <label>時間
+              <select name="preferredTime3" disabled><option value="">先に日付を選択</option></select>
             </label>
           </div>
           <label class="honeypot" aria-hidden="true">Webサイト<input name="website" tabindex="-1" autocomplete="off"></label>
