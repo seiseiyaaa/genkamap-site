@@ -53,27 +53,43 @@
         <p class="microcopy">対象10〜30名から開始 ／ Chrome拡張＋Googleカレンダー ／ PoC価格は個別相談</p>
       </div>
 
-      <div class="hero-visual" id="demo" aria-label="工数ダッシュボードの画面イメージ">
+      <div class="hero-visual" id="demo" aria-label="実際の顧客向けダッシュボード画面(デモデータ)">
         <div class="visual-topbar">
           <div class="traffic-lights"><i></i><i></i><i></i></div>
-          <span>今月の案件別工数</span>
-          <span class="live-pill"><i></i> 集計中</span>
+          <span>工数ダッシュボード</span>
+          <span></span>
         </div>
-        <div class="metric-row">
-          <div><span>計測工数</span><strong>1,248<small>h</small></strong><b>前月比 +8.4%</b></div>
-          <div><span>帰属率</span><strong>87.6<small>%</small></strong><b class="neutral">目標 80%以上</b></div>
-          <div><span>要確認案件</span><strong>3<small>件</small></strong><b class="alert">原価超過の可能性</b></div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-heading"><span>顧客・案件別工数</span><small>Chrome実測 ＋ カレンダー補完</small></div>
-          <div class="bar-list">
-            <div class="bar-item"><span>A社｜運用支援</span><div><i style="--w: 88%"></i></div><b>264h</b></div>
-            <div class="bar-item"><span>B社｜サイト改善</span><div><i style="--w: 66%"></i></div><b>198h</b></div>
-            <div class="bar-item risk"><span>C社｜月次支援</span><div><i style="--w: 58%"></i></div><b>174h</b></div>
-            <div class="bar-item"><span>D社｜新規提案</span><div><i style="--w: 42%"></i></div><b>126h</b></div>
+        <div class="app-frame">
+          <div class="app-topbar">
+            <span class="app-brand"><i>G</i>工数ダッシュボード</span>
+            <span class="app-actions"><b>ローデータをCSVでダウンロード</b><em>ログアウト</em></span>
           </div>
-          <div class="insight"><span>!</span><p><strong>C社は契約フィーに対して工数原価が超過傾向です。</strong><br>担当者別の内訳を確認し、条件変更を検討できます。</p></div>
+          <div class="app-kpis">
+            <div><span>合計工数</span><strong>412.5<small>時間</small></strong></div>
+            <div><span>顧客・プロジェクト数</span><strong>12<small>件</small></strong></div>
+            <div><span>担当者数</span><strong>8<small>人</small></strong></div>
+          </div>
+          <div class="app-panel">
+            <div class="app-panel-head"><b>データ品質(帰属率)</b><span>目標 80%以上</span></div>
+            <div class="app-quality">
+              <strong>87.6<small>%</small></strong>
+              <span>帰属済み 361.2h ／ 未帰属 51.3h<br>ID未記入ファイルの内訳は管理者のみに表示</span>
+            </div>
+          </div>
+          <div class="app-panel">
+            <div class="app-panel-head"><b>顧客・プロジェクト別</b><span>工数の多い順</span></div>
+            <table class="app-table">
+              <thead><tr><th>顧客・プロジェクト</th><th>種別</th><th>構成</th><th class="num">実測</th><th class="num">予定補完</th><th class="num">合計</th></tr></thead>
+              <tbody>
+                <tr><td><b>ABC商事</b><i>ABC001</i></td><td><span class="app-badge">顧客</span></td><td><div class="app-track"><span style="--w: 92%"></span></div></td><td class="num">86.5h</td><td class="num">12.0h</td><td class="num">98.5h</td></tr>
+                <tr><td><b>新商品キャンペーン</b><i>PRJ001</i></td><td><span class="app-badge">プロジェクト</span></td><td><div class="app-track"><span style="--w: 74%"></span></div></td><td class="num">71.0h</td><td class="num">8.5h</td><td class="num">79.5h</td></tr>
+                <tr><td><b>XYZ社</b><i>XYZ001</i></td><td><span class="app-badge">顧客</span></td><td><div class="app-track"><span style="--w: 63%"></span></div></td><td class="num">61.3h</td><td class="num">6.2h</td><td class="num">67.5h</td></tr>
+                <tr><td><b>サイトリニューアル</b><i>PRJ014</i></td><td><span class="app-badge">プロジェクト</span></td><td><div class="app-track"><span style="--w: 50%"></span></div></td><td class="num">44.1h</td><td class="num">9.4h</td><td class="num">53.5h</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <p class="visual-caption">実際の顧客向けダッシュボード画面(デモデータ)。期間・案件・担当者の絞り込み、担当者別内訳、CSV出力も同じ画面で行えます。</p>
       </div>
     </section>
 
