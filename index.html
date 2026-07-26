@@ -35,7 +35,7 @@
     </a>
     <nav aria-label="メインナビゲーション">
       <a href="#how">仕組み</a>
-      <a href="#security">取得データ</a>
+      <a href="./faq.html">よくある質問</a>
       <a class="nav-cta" href="#contact">PoCに相談する</a>
     </nav>
   </header>
@@ -65,9 +65,16 @@
             <span class="app-actions"><b>ローデータをCSVでダウンロード</b><em>ログアウト</em></span>
           </div>
           <div class="app-kpis">
-            <div><span>合計工数</span><strong>412.5<small>時間</small></strong></div>
-            <div><span>顧客・プロジェクト数</span><strong>12<small>件</small></strong></div>
-            <div><span>担当者数</span><strong>8<small>人</small></strong></div>
+            <div><span>合計工数</span><strong>412.5<small>時間</small></strong><em>前期間比 +8.4%</em></div>
+            <div><span>顧客・プロジェクト数</span><strong>12<small>件</small></strong><em>うち予定超過 2件</em></div>
+            <div><span>担当者数</span><strong>8<small>人</small></strong><em>計測中 7人</em></div>
+          </div>
+          <div class="app-panel">
+            <div class="app-panel-head"><b>計測の稼働状況</b><span>管理者のみ表示</span></div>
+            <div class="app-status">
+              <span class="app-flag">未計測 1名</span>
+              <span>山田 拓也 — 導入手続き後、一度もデータが届いていません</span>
+            </div>
           </div>
           <div class="app-panel">
             <div class="app-panel-head"><b>データ品質(帰属率)</b><span>目標 80%以上</span></div>
@@ -79,17 +86,17 @@
           <div class="app-panel">
             <div class="app-panel-head"><b>顧客・プロジェクト別</b><span>工数の多い順</span></div>
             <table class="app-table">
-              <thead><tr><th>顧客・プロジェクト</th><th>種別</th><th>構成</th><th class="num">実測</th><th class="num">予定補完</th><th class="num">合計</th></tr></thead>
+              <thead><tr><th>顧客・プロジェクト</th><th>種別</th><th class="num">実測</th><th class="num">予定補完</th><th class="num">合計</th><th class="num">前期間比</th><th class="num">予定消化</th></tr></thead>
               <tbody>
-                <tr><td><b>ABC商事</b><i>ABC001</i></td><td><span class="app-badge">顧客</span></td><td><div class="app-track"><span style="--w: 92%"></span></div></td><td class="num">86.5h</td><td class="num">12.0h</td><td class="num">98.5h</td></tr>
-                <tr><td><b>新商品キャンペーン</b><i>PRJ001</i></td><td><span class="app-badge">プロジェクト</span></td><td><div class="app-track"><span style="--w: 74%"></span></div></td><td class="num">71.0h</td><td class="num">8.5h</td><td class="num">79.5h</td></tr>
-                <tr><td><b>XYZ社</b><i>XYZ001</i></td><td><span class="app-badge">顧客</span></td><td><div class="app-track"><span style="--w: 63%"></span></div></td><td class="num">61.3h</td><td class="num">6.2h</td><td class="num">67.5h</td></tr>
-                <tr><td><b>サイトリニューアル</b><i>PRJ014</i></td><td><span class="app-badge">プロジェクト</span></td><td><div class="app-track"><span style="--w: 50%"></span></div></td><td class="num">44.1h</td><td class="num">9.4h</td><td class="num">53.5h</td></tr>
+                <tr><td><b>ABC商事</b><i>ABC001</i></td><td><span class="app-badge">顧客</span></td><td class="num">86.5h</td><td class="num">12.0h</td><td class="num">98.5h</td><td class="num up">+24.6%</td><td class="num"><span class="app-burn"><i>92%</i><span class="app-track warn"><span style="--w: 92%"></span></span></span></td></tr>
+                <tr><td><b>新商品キャンペーン</b><i>PRJ001</i></td><td><span class="app-badge">プロジェクト</span></td><td class="num">71.0h</td><td class="num">8.5h</td><td class="num">79.5h</td><td class="num up">+11.2%</td><td class="num"><span class="app-burn"><i>66%</i><span class="app-track"><span style="--w: 66%"></span></span></span></td></tr>
+                <tr><td><b>XYZ社</b><i>XYZ001</i></td><td><span class="app-badge">顧客</span></td><td class="num">61.3h</td><td class="num">6.2h</td><td class="num">67.5h</td><td class="num down">−4.8%</td><td class="num"><span class="app-burn"><i>45%</i><span class="app-track"><span style="--w: 45%"></span></span></span></td></tr>
+                <tr><td><b>サイトリニューアル</b><i>PRJ014</i></td><td><span class="app-badge">プロジェクト</span></td><td class="num">44.1h</td><td class="num">9.4h</td><td class="num">53.5h</td><td class="num down">−18.3%</td><td class="num"><span class="app-burn"><i>27%</i><span class="app-track"><span style="--w: 27%"></span></span></span></td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <p class="visual-caption">実際の顧客向けダッシュボード画面(デモデータ)。期間・案件・担当者の絞り込み、担当者別内訳、CSV出力も同じ画面で行えます。</p>
+        <p class="visual-caption">実際の顧客向けダッシュボード画面(デモデータ)。予定工数の消化率、前期間比、計測が届いていない担当者の検知、帰属の訂正、月次締めも同じ画面で行えます。</p>
       </div>
     </section>
 
@@ -139,13 +146,14 @@
         <h2>社員監視のための<br>ツールにはしません。</h2>
       </div>
       <div class="security-content">
-        <p>目的は「誰がサボっているか」ではなく、「どの案件に原価がかかったか」を把握すること。必要な情報だけに絞って設計しています。</p>
+        <p>目的は「誰がサボっているか」ではなく、「どの案件に原価がかかったか」を把握すること。取得する情報も、現場が自分で除外できる範囲も、すべて公開しています。</p>
         <ul>
-          <li><span>✓</span>キー入力やマウス操作の内容は取得しません</li>
-          <li><span>✓</span>ドキュメント本文・セルの値は取得しません</li>
-          <li><span>✓</span>対象外サイトの閲覧履歴は取得しません</li>
-          <li><span>✓</span>Googleカレンダーの本文・場所・参加者メールは送信しません</li>
+          <li><span>Q</span><a href="./faq.html#watch">社員の監視ツールとして使えますか？</a></li>
+          <li><span>Q</span><a href="./faq.html#exclude">見られたくないファイルは除外できますか？</a></li>
+          <li><span>Q</span><a href="./faq.html#collect">具体的に何を取得しますか？</a></li>
+          <li><span>Q</span><a href="./faq.html#storage">データはどこに保存されますか？</a></li>
         </ul>
+        <p class="microcopy"><a href="./faq.html">よくある質問をすべて見る →</a></p>
       </div>
     </section>
 
@@ -227,7 +235,7 @@
 
   <footer>
     <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">G</span><span>GENKA MAP <small>β</small></span></a>
-    <p><a href="./privacy.html">プライバシーポリシー</a>　<a href="./privacy.html#google-data">Googleユーザーデータの取り扱い</a>　<a href="https://chromewebstore.google.com/detail/genka-map/cpkedonbpkdpkkopalegfcmphghfmioj">Chrome ウェブストア</a>　© 2026 GENKA MAP</p>
+    <p><a href="./faq.html">よくある質問</a>　<a href="./privacy.html">プライバシーポリシー</a>　<a href="./privacy.html#google-data">Googleユーザーデータの取り扱い</a>　<a href="https://chromewebstore.google.com/detail/genka-map/cpkedonbpkdpkkopalegfcmphghfmioj">Chrome ウェブストア</a>　© 2026 GENKA MAP</p>
   </footer>
   <script src="./script.js"></script>
 </body>

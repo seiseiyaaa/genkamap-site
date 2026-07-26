@@ -76,6 +76,17 @@ h2 { margin-bottom: 22px; font-size: clamp(32px, 4vw, 52px); }
 .app-table th { padding: 6px 10px; color: #697386; background: #fafbfc; text-align: left; font-size: 7px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
 .app-table td { padding: 7px 10px; border-top: 1px solid #edf0f4; color: #172033; vertical-align: middle; }
 .app-table .num { text-align: right; font-family: "DM Sans", sans-serif; white-space: nowrap; }
+.app-kpis em { display: block; margin-top: 5px; color: #697386; font-style: normal; font-size: 8px; font-weight: 600; }
+.app-status { display: flex; align-items: center; gap: 9px; padding: 9px 12px; }
+.app-flag { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; background: #fdecec; color: #b42318; font-size: 7.5px; font-weight: 700; white-space: nowrap; }
+.app-status > span { color: #697386; font-size: 8px; line-height: 1.55; }
+/* 工数が増えた案件は注意色。原価の見え方として増加を目立たせる。 */
+.app-table .up { color: #c2410c; }
+.app-table .down { color: #19a974; }
+.app-burn { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.app-burn i { font-style: normal; color: #697386; }
+.app-burn .app-track { width: 38px; }
+.app-track.warn span { background: linear-gradient(90deg, #d9541f, #f0956a); }
 .app-table td b { display: block; font-size: 9px; }
 .app-table td i { display: block; margin-top: 1px; color: #697386; font-style: normal; font-size: 7px; }
 .app-badge { display: inline-flex; padding: 2px 6px; border-radius: 99px; color: #355196; background: #edf2ff; font-size: 7px; font-weight: 700; white-space: nowrap; }
@@ -118,6 +129,10 @@ h2 { margin-bottom: 22px; font-size: clamp(32px, 4vw, 52px); }
 .security-content li { padding: 15px 0; border-top: 1px solid var(--line); font-size: 14px; }
 .security-content li:last-child { border-bottom: 1px solid var(--line); }
 .security-content li span { margin-right: 10px; color: #278264; font-weight: 700; }
+.security-content li a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(17,42,38,.22); }
+.security-content li a:hover { color: #23735f; }
+.security-content .microcopy { margin-top: 22px; }
+.security-content .microcopy a { color: #23735f; font-weight: 700; }
 
 .poc { padding-block: 120px; }
 .poc-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
@@ -171,6 +186,23 @@ footer p a:hover, .policy a:not(.brand) { color: #23735f; text-decoration: under
 /* スコープ名が長く、狭い画面で横スクロールを起こすため折り返す。 */
 .policy code { font-size: .92em; overflow-wrap: anywhere; }
 .policy-date { margin-top: 56px; color: #73817c; font-size: 13px; }
+
+.faq { max-width: 880px; padding-block: 88px 112px; }
+.faq h1 { font-size: clamp(38px, 5vw, 54px); }
+.faq > p { color: var(--ink-soft); }
+.faq > p a { color: #23735f; text-decoration: underline; }
+.faq-group { margin-top: 66px; }
+.faq-group > h2 { margin-bottom: 6px; font-size: 23px; letter-spacing: -.02em; }
+.faq-group > p { margin: 0 0 20px; color: var(--ink-soft); font-size: 14px; }
+.faq-item { padding: 24px 0; border-top: 1px solid var(--line); }
+.faq-group > .faq-item:last-of-type { border-bottom: 1px solid var(--line); }
+.faq-item h3 { margin-bottom: 10px; font-size: 17px; letter-spacing: -.01em; }
+.faq-item p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+.faq-item p + p { margin-top: 11px; }
+.faq-item b { color: var(--ink); }
+.faq-cta { margin-top: 76px; padding: 38px; border-radius: 14px; background: var(--cream); }
+.faq-cta h2 { margin-bottom: 9px; font-size: 22px; letter-spacing: -.02em; }
+.faq-cta p { margin: 0 0 22px; color: var(--ink-soft); font-size: 14px; }
 
 @media (max-width: 900px) {
   .hero, .problem-grid, .security, .poc-grid, .contact-grid { grid-template-columns: 1fr; }
