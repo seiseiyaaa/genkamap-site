@@ -76,10 +76,10 @@ h2 { margin-bottom: 22px; font-size: clamp(32px, 4vw, 52px); }
 .app-table th { padding: 6px 10px; color: #697386; background: #fafbfc; text-align: left; font-size: 7px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
 .app-table td { padding: 7px 10px; border-top: 1px solid #edf0f4; color: #172033; vertical-align: middle; }
 .app-table .num { text-align: right; font-family: "DM Sans", sans-serif; white-space: nowrap; }
-.app-kpis em { display: block; margin-top: 5px; color: #697386; font-style: normal; font-size: 8px; font-weight: 600; }
-.app-status { display: flex; align-items: center; gap: 9px; padding: 9px 12px; }
-.app-flag { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; background: #fdecec; color: #b42318; font-size: 7.5px; font-weight: 700; white-space: nowrap; }
-.app-status > span { color: #697386; font-size: 8px; line-height: 1.55; }
+.app-kpis em { display: block; margin-top: 5px; color: #98a2b3; font-style: normal; font-size: 7.5px; font-weight: 600; }
+.app-status { display: flex; align-items: center; gap: 8px; padding: 9px 12px; }
+.app-flag { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; background: #fdecec; color: #b42318; font-size: 7px; font-weight: 700; white-space: nowrap; }
+.app-status > span { color: #98a2b3; font-size: 7.5px; line-height: 1.55; }
 /* 工数が増えた案件は注意色。原価の見え方として増加を目立たせる。 */
 .app-table .up { color: #c2410c; }
 .app-table .down { color: #19a974; }
