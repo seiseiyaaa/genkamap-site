@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GENKA MAPのオンライン相談の日程調整ページ。空いている枠から希望日時をお選びいただけます。">
+  <!-- 資料をお送りした方へのご案内ページなので、検索結果には出さない。 -->
+  <meta name="robots" content="noindex,nofollow">
+  <title>オンライン相談の日程調整｜GENKA MAP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=074db91b">
+  <script src="./analytics.js?v=4779f2a9" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="GENKA MAP トップへ"><span class="brand-mark" aria-hidden="true">G</span><span>GENKA MAP <small>β</small></span></a>
+  </header>
+
+  <main class="contact" id="schedule">
+    <div class="section-shell contact-grid">
+      <div>
+        <p class="eyebrow light"><span></span>Book a session</p>
+        <h2>オンライン相談の<br>日程をお選びください。</h2>
+        <p>空いている枠だけを表示しています。第1希望をお選びいただくと、その枠を仮で押さえます。確定のご連絡は担当よりお送りします。</p>
+        <div class="contact-note"><span>30</span><p><b>30分・オンライン</b><br>現在の工数管理の実情と、見たい案件収支をうかがいます。資料の内容へのご質問だけでも構いません。</p></div>
+      </div>
+      <form id="schedule-form" novalidate>
+        <div class="form-row">
+          <label>会社名 <span>必須</span><input name="company" autocomplete="organization" required maxlength="100"></label>
+          <label>お名前 <span>必須</span><input name="name" autocomplete="name" required maxlength="80"></label>
+        </div>
+        <div class="form-row">
+          <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120"></label>
+          <label>電話番号 <span>必須</span><input type="tel" name="phone" autocomplete="tel" required maxlength="16" placeholder="090-1234-5678"></label>
+        </div>
+        <div class="form-row">
+          <label>第1希望日 <span>必須</span>
+            <select name="preferredDate1" required><option value="">読み込み中…</option></select>
+          </label>
+          <label>時間 <span>必須</span>
+            <select name="preferredTime1" required disabled><option value="">先に日付を選択</option></select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>第2希望日(任意)
+            <select name="preferredDate2"><option value="">指定なし</option></select>
+          </label>
+          <label>時間
+            <select name="preferredTime2" disabled><option value="">先に日付を選択</option></select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>第3希望日(任意)
+            <select name="preferredDate3"><option value="">指定なし</option></select>
+          </label>
+          <label>時間
+            <select name="preferredTime3" disabled><option value="">先に日付を選択</option></select>
+          </label>
+        </div>
+        <label class="honeypot" aria-hidden="true">Webサイト<input name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="form-note">ご記入いただいた内容は、相談の日程調整と実施にのみ利用します(<a href="./privacy.html">プライバシーポリシー</a>)。</p>
+        <button class="button button-light" type="submit">この日程で申し込む <span aria-hidden="true">→</span></button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">G</span><span>GENKA MAP <small>β</small></span></a>
+    <p><a href="./faq.html">よくある質問</a>　<a href="./privacy.html">プライバシーポリシー</a>　© 2026 GENKA MAP</p>
+  </footer>
+  <script src="./schedule.js?v=5c8bda83"></script>
+</body>
+</html>
