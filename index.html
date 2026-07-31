@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=074db91b">
+  <script src="./analytics.js?v=4779f2a9" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -36,7 +37,7 @@
     <nav aria-label="メインナビゲーション">
       <a href="#how">仕組み</a>
       <a href="./faq.html">よくある質問</a>
-      <a class="nav-cta" href="#contact">PoCに相談する</a>
+      <a class="nav-cta" href="#contact" data-track="ヘッダーCTA">資料を請求する</a>
     </nav>
   </header>
 
@@ -47,8 +48,8 @@
         <h1>赤字案件と薄利案件を、<br><em>撲滅する。</em></h1>
         <p class="hero-lead">利益を最も削るのは人件費です。しかし「どの案件に誰が何時間使ったか」を正確に持っている会社はほとんどありません。GENKA MAPは、Chromeのブラウザ作業時間とGoogleカレンダーの予定を取得して自動集計する工数・原価管理アプリです。勘と自己申告に頼っていた案件別の損益を、値上げ・撤退・体制変更を判断できる数字に変えます。</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#contact">3ヶ月PoCを相談する <span aria-hidden="true">→</span></a>
-          <a class="button button-ghost" href="#demo">画面イメージを見る</a>
+          <a class="button button-primary" href="#contact" data-track="ヒーローCTA">資料を請求する(無料) <span aria-hidden="true">→</span></a>
+          <a class="button button-ghost" href="#demo" data-track="画面イメージ">画面イメージを見る</a>
         </div>
         <p class="microcopy">対象10〜30名から開始 ／ Chrome拡張＋Googleカレンダー ／ PoC価格は個別相談</p>
       </div>
@@ -179,54 +180,21 @@
     <section class="contact" id="contact">
       <div class="section-shell contact-grid">
         <div>
-          <p class="eyebrow light"><span></span>Early partner program</p>
-          <h2>自社の案件原価を、<br>一度きちんと見てみませんか。</h2>
-          <p>まだβ版です。だからこそ、実際の運用に合わせて帰属ルールやレポートを一緒に設計します。導入可否が未定でも構いません。</p>
-          <div class="contact-note"><span>30</span><p><b>30分のオンライン相談</b><br>現在の工数管理と、見たい案件収支を伺います。</p></div>
+          <p class="eyebrow light"><span></span>Document request</p>
+          <h2>まずは資料で、<br>使えるかどうかを確かめてください。</h2>
+          <p>取得するデータの範囲、導入の進め方、料金の考え方をまとめた資料をお送りします。導入可否が未定の段階でも構いません。</p>
+          <div class="contact-note"><span>1分</span><p><b>ご記入いただいたメール宛に、すぐ資料をお送りします</b><br>お読みいただいたうえで必要であれば、30分のオンライン相談を承ります。無理な勧誘はしません。</p></div>
         </div>
         <form id="lead-form" novalidate>
           <div class="form-row">
             <label>会社名 <span>必須</span><input name="company" autocomplete="organization" required maxlength="100"></label>
             <label>お名前 <span>必須</span><input name="name" autocomplete="name" required maxlength="80"></label>
           </div>
-          <div class="form-row">
-            <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120"></label>
-            <label>電話番号 <span>必須</span><input type="tel" name="phone" autocomplete="tel" required maxlength="16" placeholder="090-1234-5678"></label>
-          </div>
-          <label>工数を可視化したい人数
-            <select name="teamSize">
-              <option value="">選択してください</option>
-              <option>10名未満</option><option>10〜30名</option><option>31〜100名</option><option>101〜300名</option><option>301名以上</option>
-            </select>
-          </label>
-          <label>現在の課題(任意)<textarea name="challenge" maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
-          <div class="form-row">
-            <label>オンライン相談の第1希望日 <span>必須</span>
-              <select name="preferredDate1" required><option value="">読み込み中…</option></select>
-            </label>
-            <label>時間 <span>必須</span>
-              <select name="preferredTime1" required disabled><option value="">先に日付を選択</option></select>
-            </label>
-          </div>
-          <div class="form-row">
-            <label>第2希望日(任意)
-              <select name="preferredDate2"><option value="">指定なし</option></select>
-            </label>
-            <label>時間
-              <select name="preferredTime2" disabled><option value="">先に日付を選択</option></select>
-            </label>
-          </div>
-          <div class="form-row">
-            <label>第3希望日(任意)
-              <select name="preferredDate3"><option value="">指定なし</option></select>
-            </label>
-            <label>時間
-              <select name="preferredTime3" disabled><option value="">先に日付を選択</option></select>
-            </label>
-          </div>
+          <label>会社メールアドレス <span>必須</span><input type="email" name="email" autocomplete="email" required maxlength="120" placeholder="name@example.co.jp"></label>
+          <label>ひとこと(任意)<textarea name="challenge" maxlength="1000" placeholder="例：案件別の工数が分からず、月額フィーの見直しができていない"></textarea></label>
           <label class="honeypot" aria-hidden="true">Webサイト<input name="website" tabindex="-1" autocomplete="off"></label>
-          <p class="form-note">送信いただいた内容は、PoC相談のご連絡にのみ利用します(<a href="./privacy.html">プライバシーポリシー</a>)。</p>
-          <button class="button button-light" type="submit">相談内容を送信する <span aria-hidden="true">→</span></button>
+          <p class="form-note">ご記入いただいた内容は、資料の送付とその後のご連絡にのみ利用します(<a href="./privacy.html">プライバシーポリシー</a>)。</p>
+          <button class="button button-light" type="submit">資料を受け取る <span aria-hidden="true">→</span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -235,8 +203,8 @@
 
   <footer>
     <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">G</span><span>GENKA MAP <small>β</small></span></a>
-    <p><a href="./faq.html">よくある質問</a>　<a href="./privacy.html">プライバシーポリシー</a>　<a href="./privacy.html#google-data">Googleユーザーデータの取り扱い</a>　<a href="https://chromewebstore.google.com/detail/genka-map/cpkedonbpkdpkkopalegfcmphghfmioj">Chrome ウェブストア</a>　© 2026 GENKA MAP</p>
+    <p><a href="./faq.html">よくある質問</a>　<a href="./privacy.html">プライバシーポリシー</a>　<a href="./privacy.html#google-data">Googleユーザーデータの取り扱い</a>　<a href="https://chromewebstore.google.com/detail/genka-map/cpkedonbpkdpkkopalegfcmphghfmioj" data-track="Chromeウェブストア">Chrome ウェブストア</a>　© 2026 GENKA MAP</p>
   </footer>
-  <script src="./script.js?v=30c8ab54"></script>
+  <script src="./script.js?v=3213cccd"></script>
 </body>
 </html>
