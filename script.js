@@ -16,8 +16,8 @@ function formPayload(formData) {
     email: String(formData.get("email") || "").trim(),
     challenge: String(formData.get("challenge") || "").trim(),
     website: String(formData.get("website") || ""),
-    // 資料請求と、後から作る日程調整とを、シート上で見分けるための印。
-    source: "資料請求",
+    // どのLPからの請求かをシート上で見分けるための印。
+    source: form.dataset.source || "資料請求",
     pageUrl: window.location.href,
     utmSource: params.get("utm_source") || "",
     utmMedium: params.get("utm_medium") || "",
@@ -34,6 +34,8 @@ form.addEventListener("submit", async (event) => {
 
   const button = form.querySelector("button[type='submit']");
   const payload = formPayload(new FormData(form));
+  // ボタンの文言はページごとに違うため、元の文言を控えてから差し替える。
+  const label = button.firstChild.textContent;
   button.disabled = true;
   button.firstChild.textContent = "送信中… ";
 
@@ -60,6 +62,6 @@ form.addEventListener("submit", async (event) => {
     setStatus("送信できませんでした。時間をおいてもう一度お試しください。", true);
   } finally {
     button.disabled = false;
-    button.firstChild.textContent = "資料を受け取る ";
+    button.firstChild.textContent = label;
   }
 });

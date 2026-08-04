@@ -240,3 +240,68 @@ footer p a:hover, .policy a:not(.brand) { color: #23735f; text-decoration: under
   form { padding: 24px 18px; }
   footer { gap: 20px; flex-direction: column; justify-content: center; }
 }
+
+/* 業務量調査LP。見出しが既存LPより長いため、列幅に収まる大きさへ落とす。 */
+.survey-hero h1 { font-size: clamp(36px, 4.2vw, 56px); }
+
+/* 何が分かるかを数字で見せる一覧。 */
+.breakdown { padding: 34px 38px; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: var(--shadow); }
+.breakdown-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.breakdown-head b { font-size: 15px; }
+.breakdown-head span { color: #74817c; font-size: 11px; }
+.breakdown ul { padding: 0; margin: 0; list-style: none; }
+.breakdown li { padding: 15px 0; border-bottom: 1px solid #eef1ec; }
+.breakdown li:last-child { border-bottom: 0; }
+.breakdown-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 9px; font-size: 14px; }
+.breakdown-row b { font-weight: 600; }
+.breakdown-row span { color: #25775c; font-family: "DM Sans", sans-serif; font-weight: 700; }
+.breakdown-bar { height: 7px; border-radius: 99px; background: #eaf4ec; }
+.breakdown-bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #2d8a6a, #85eba5); }
+.breakdown-sub { margin: 9px 0 0; padding-left: 14px; border-left: 2px solid #e2f6e7; color: var(--ink-soft); font-size: 12px; }
+.breakdown-note { margin: 18px 0 0; color: #74817c; font-size: 11px; }
+
+/* 調査の進め方。3ヶ月の流れを1本の線で示す。 */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 55px; border-top: 1px solid rgba(255,255,255,.15); }
+.timeline div { padding: 26px 24px 0 0; }
+.timeline div + div { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.15); }
+.timeline small { display: block; margin-bottom: 8px; color: var(--mint); font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+.timeline b { font-size: 16px; }
+.timeline p { margin: 8px 0 0; color: rgba(255,255,255,.67); font-size: 13px; }
+
+.price-card { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; padding: 34px 38px; border: 1px solid var(--line); border-radius: 14px; background: var(--cream); }
+.price-card b { display: block; margin-bottom: 6px; font-size: 20px; }
+.price-card p { margin: 0; color: var(--ink-soft); font-size: 13px; }
+.price-card strong { font-size: clamp(30px, 4vw, 40px); letter-spacing: -.03em; white-space: nowrap; }
+.price-card strong small { font-size: 15px; font-weight: 600; }
+.option-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+.option-list div { padding: 22px 24px; border: 1px solid var(--line); border-radius: 12px; }
+.option-list b { display: block; margin-bottom: 6px; font-size: 14px; }
+.option-list p { margin: 0; color: var(--ink-soft); font-size: 13px; }
+
+@media (max-width: 960px) {
+  .timeline, .option-list { grid-template-columns: 1fr 1fr; }
+  .breakdown, .price-card { padding: 26px 22px; }
+  .price-card { grid-template-columns: 1fr; }
+}
+
+/* 手段の比較。星取表は横に長くなるため、狭い画面では表だけ横スクロールさせる。 */
+.matrix-scroll { overflow-x: auto; }
+.matrix { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 13px; }
+.matrix th, .matrix td { padding: 16px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.matrix thead th { padding-bottom: 14px; color: #74817c; font-size: 11px; font-weight: 600; }
+.matrix thead th.is-ours { color: var(--ink); font-size: 14px; }
+.matrix tbody th { width: 128px; color: var(--ink-soft); font-weight: 600; }
+.matrix td { color: var(--ink-soft); }
+.matrix .is-ours { background: #f2f9f3; }
+.matrix tbody tr:last-child th, .matrix tbody tr:last-child td { border-bottom: 0; }
+.matrix b { display: block; margin-bottom: 3px; color: var(--ink); font-size: 15px; }
+.matrix .is-ours b { color: #1d6e53; }
+.matrix-note { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+.matrix-note div { padding: 22px 24px; border-left: 3px solid #e2e7e1; }
+.matrix-note div:first-child { border-left-color: var(--warning); }
+.matrix-note b { display: block; margin-bottom: 6px; font-size: 14px; }
+.matrix-note p { margin: 0; color: var(--ink-soft); font-size: 13px; }
+
+@media (max-width: 760px) {
+  .matrix-note { grid-template-columns: 1fr; }
+}
